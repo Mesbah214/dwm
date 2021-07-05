@@ -13,11 +13,11 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "mononoki Nerd Font:size=10" };
 static const char dmenufont[]       = "mononoki Nerd Font:size=10";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char col_gray1[]       = "#1b2b34";
+static const char col_gray2[]       = "#282c34";
+static const char col_gray3[]       = "#c0c5ce";
+static const char col_gray4[]       = "#5c6577";
+static const char col_cyan[]        = "#62b3b2";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -32,12 +32,13 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class     instance  title           tags mask   iscentered    isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           0,          0,            1,          0,          0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 8,     0,            0,          0,         -1,        -1 },
-	{ "St",      NULL,     NULL,           0,          0,            0,          1,          0,        -1 },
-	{ NULL,      NULL,     "Event Tester", 0,          0,            0,          0,          1,        -1 }, /* xev */
-  { "st",      NULL,     "pulsemixer",   0,          1,            1,          1,          0,        -1 },
+	/* class           instance          title                      tags mask   iscentered  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",          NULL,             NULL,                      0,          0,          1,          0,          0,        -1 },
+	{ "Google-chrome",        NULL,             NULL,                      1 << 2,     0,          0,          0,         -1,        -1 },
+	{ "qBittorrent",   NULL,             NULL,                      1 << 8,     0,          0,          0,         -1,        -1 },
+	{ "St",            NULL,             NULL,                      0,          0,          0,          1,          0,        -1 },
+	{ NULL,            NULL,             "Event Tester",            0,          0,          0,          0,          1,        -1 }, /* xev */
+  { "St",            NULL,             "pulsemixer",              0,          1,          1,          1,          0,        -1 },
 };
 
 /* layout(s) */
@@ -72,6 +73,7 @@ static const char *pccmd[]    = { "pcmanfm", NULL };
 static const char *volcmd[]   = { "st", "-e", "pulsemixer", NULL };
 static const char *bwrcmd[]   = { "google-chrome-stable", NULL };
 static const char *prtcmd[]   = { "./.config/screenshot.sh", NULL };
+static const char *pwrcmd[]   = { "./.config/powermenu.sh", NULL };
 /* controls volume */
 static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "1", "+5%",     NULL };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "1", "-5%",     NULL };
@@ -89,6 +91,7 @@ static Key keys[] = {
   { 0,                            XK_Print,  spawn,          {.v = prtcmd } },
   { 0,                            XK_F11,    spawn,          {.v = dimmercmd } },
   { 0,                            XK_F12,    spawn,          {.v = brightercmd } },
+  { MODKEY|ShiftMask,             XK_k,      spawn,          {.v = pwrcmd } },
   { MODKEY|ShiftMask,             XK_w,      spawn,          {.v = bwrcmd } },
   { MODKEY|ShiftMask,             XK_v,      spawn,          {.v = volcmd } },
   { MODKEY|ShiftMask,             XK_n,      spawn,          {.v = nvimcmd } },
