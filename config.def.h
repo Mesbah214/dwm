@@ -11,8 +11,8 @@ static const unsigned int gappov    = 16;       /* vert outer gap between window
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "mononoki Nerd Font:size=10" };
+static const char dmenufont[]       = "mononoki Nerd Font:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -37,6 +37,7 @@ static const Rule rules[] = {
 	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
 	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+  { "st",      NULL,     "pulsemixer",   0,         1,          1,           0,        -1 },
 };
 
 /* layout(s) */
@@ -66,9 +67,32 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *nvimcmd[]  = { "st", "-e", "nvim", NULL };
+static const char *pccmd[]    = { "pcmanfm", NULL };
+static const char *volcmd[]   = { "st", "-e", "pulsemixer", NULL };
+static const char *bwrcmd[]   = { "google-chrome-stable", NULL };
+static const char *prtcmd[]   = { "./.config/screenshot.sh", NULL };
+/* controls volume */
+static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "1", "+5%",     NULL };
+static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "1", "-5%",     NULL };
+static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "1", "toggle",  NULL };
+/* controls brightness */
+static const char *brightercmd [] = { "xbacklight", "-inc", "5", NULL };
+static const char *dimmercmd []   = { "xbacklight", "-dec", "5", NULL };
+
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
+  { 0,                            XK_F2,     spawn,          {.v = downvol } },
+	{ 0,                            XK_F1,     spawn,          {.v = mutevol } },
+	{ 0,                            XK_F3,     spawn,          {.v = upvol   } },  
+  { 0,                            XK_Print,  spawn,          {.v = prtcmd } },
+  { 0,                            XK_F11,    spawn,          {.v = dimmercmd } },
+  { 0,                            XK_F12,    spawn,          {.v = brightercmd } },
+  { MODKEY|ShiftMask,             XK_w,      spawn,          {.v = bwrcmd } },
+  { MODKEY|ShiftMask,             XK_v,      spawn,          {.v = volcmd } },
+  { MODKEY|ShiftMask,             XK_n,      spawn,          {.v = nvimcmd } },
+  { MODKEY|ShiftMask,             XK_p,      spawn,          {.v = pccmd } }, 
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
