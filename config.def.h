@@ -13,11 +13,11 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "mononoki Nerd Font:size=10" };
 static const char dmenufont[]       = "mononoki Nerd Font:size=10";
-static const char col_gray1[]       = "#1b2b34";
+static const char col_gray1[]       = "#2e3440";
 static const char col_gray2[]       = "#282c34";
-static const char col_gray3[]       = "#c0c5ce";
-static const char col_gray4[]       = "#5c6577";
-static const char col_cyan[]        = "#62b3b2";
+static const char col_gray3[]       = "#d8dee9";
+static const char col_gray4[]       = "#3b4252";
+static const char col_cyan[]        = "#bf616a";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -32,13 +32,13 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class           instance          title                      tags mask   iscentered  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",          NULL,             NULL,                      0,          0,          1,          0,          0,        -1 },
-	{ "Google-chrome", NULL,             NULL,                      1 << 2,     0,          0,          0,         -1,        -1 },
-	{ "qBittorrent",   NULL,             NULL,                      1 << 8,     0,          0,          0,         -1,        -1 },
-	{ "St",            NULL,             NULL,                      0,          0,          0,          1,          0,        -1 },
-	{ NULL,            NULL,             "Event Tester",            0,          0,          0,          0,          1,        -1 }, /* xev */
-  { "St",            NULL,             "pulsemixer",              0,          1,          1,          1,          0,        -1 },
+	/* class           instance   title             tags mask   iscentered  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",          NULL,      NULL,             0,          0,          1,          0,          0,        -1 },
+	{ "Google-chrome", NULL,      NULL,             1 << 2,     0,          0,          0,         -1,        -1 },
+	{ "qBittorrent",   NULL,      NULL,             1 << 8,     0,          0,          0,         -1,        -1 },
+	{ "St",            NULL,      NULL,             0,          0,          0,          1,          0,        -1 },
+	{ NULL,            NULL,      "Event Tester",   0,          0,          0,          0,          1,        -1 }, /* xev */
+  { "St",            NULL,      "pulsemixer",     0,          1,          1,          1,          0,        -1 },
 };
 
 /* layout(s) */
