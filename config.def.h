@@ -11,6 +11,7 @@ static const unsigned int gappov    = 16;       /* vert outer gap between window
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const char buttonbar[]       = "   ";
 static const char *fonts[]          = { "mononoki Nerd Font:size=10" };
 static const char dmenufont[]       = "mononoki Nerd Font:size=10";
 static const char col_gray1[]       = "#2e3440";
@@ -152,6 +153,7 @@ static Key keys[] = {
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
+	{ ClkButton,		        0,	          	Button1,	      spawn,		      {.v = pwrcmd } },
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
