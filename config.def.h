@@ -41,7 +41,7 @@ static const Rule rules[] = {
 	{ "qBittorrent",   NULL,      NULL,             1 << 8,     0,          0,          0,         -1,        -1 },
 	{ "St",            NULL,      NULL,             0,          0,          0,          1,          0,        -1 },
 	{ NULL,            NULL,      "Event Tester",   0,          0,          0,          0,          1,        -1 }, /* xev */
-  { "St",            NULL,      "pulsemixer",     0,          1,          1,          1,          0,        -1 },
+	{ "St",            NULL,      "pulsemixer",     0,          1,          1,          1,          0,        -1 },
 };
 
 /* layout(s) */
